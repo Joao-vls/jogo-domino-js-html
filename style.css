@@ -1,0 +1,115 @@
+@charset "UTF-8";
+body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
+.cademe{
+    position: fixed;
+    z-index: 1;
+    top:10%;
+    left: 30%;
+    width:40%;
+    border: 2px solid rgb(63, 62, 61); 
+    background-image:linear-gradient(rgb(184, 184, 184),rgb(151, 145, 145));
+    height:20%;
+    font-size: 120%;
+    text-align: center;
+    padding-top: 5%;
+    color:black;
+    font-family: cursive;
+    display: none;
+}
+.mesa{
+
+    position: absolute;
+    border: 3px solid rgb(112, 72, 25);
+    border-radius: 10px;
+    width: 70% ;
+    height: 74%;
+    top:13%;
+    left: 15%;
+}
+.emc{
+    position: absolute;
+    border:1px solid beige;
+    width: 2%;
+    height: 6%;
+    top: 50%;
+    left: 46%;
+}
+.pec{
+    display:inline-block;
+    border:0px;
+    border-radius: 10px;
+    background: no-repeat;
+    background-image: url('pec/padr.png');
+    background-size: 100% 100%;
+
+
+}
+.pec:hover{
+    background-color: brown;
+}
+
+.jogador1,.bot1,.bot2,.bot3{
+    white-space:nowrap;
+    overflow:hidden; 
+    position: absolute;
+}
+.jogador1{
+    top:90%;
+    width:75%;
+    left: 25%;
+}.jogador1 .pec{
+    width:9% ;
+    height: 65px;
+
+}
+.bot1{  
+    top:12%;
+    width:10%;
+    left: 90%;
+}
+.bot1 .pec{
+    display: block;
+    transform: rotate(270deg); 
+    margin-left: 13%;
+    width: 70%;
+    height: 75px;  
+  
+}
+.bot2{  
+    bottom: 88%;
+    width:75%;
+    left: 25%;
+}
+.bot2 .pec{
+    width:9% ;
+    height: 65px;
+    transform: rotate(180deg);   
+
+}
+
+.bot3{  
+    top:12%;
+    width:10%;
+    right: 90%;
+       
+}
+.bot3 .pec{
+    display: block;
+    margin-left: 13%;
+    width: 70%;
+    height: 75px;    
+    transform: rotate(90deg);
+}
+button{
+    width:15%;
+    height: 30px;
+    position: absolute;
+    bottom: 1%;
+    background-color: rgb(24, 23, 23);
+    border: none;
+    color:whitesmoke;
+    display:none;
+
+}
+
+
