@@ -1,12 +1,11 @@
 peca={};
-pecas=[{}];
+pecas=[];
 jogador1=[];
 bot1=[];
 bot2=[];
 bot3=[];
-pecas.shift();
 let pobj=[];
-var v11=6,v22=6,s=0;
+var v11=6,v22=6,s=0,qle=0,qld=0,led=43,ldd=49;
 
 function obj(){
 var r1=0 ,r2=0,pr=0;
@@ -186,6 +185,8 @@ if(bot1.length!=0){
       v11=bot1[i].val2;
     console.log(bot1[i]);
     console.log(v11,v22);
+  mesa(1,0,bot1[i].val1,bot1[i].val2,bot1[i].pec);
+
       el[i].remove();
       bot1.splice(i,1);
       setTimeout(()=>{botjog1()},1000);
@@ -195,6 +196,8 @@ if(bot1.length!=0){
       v11=bot1[i].val1;
     console.log(bot1[i]);
     console.log(v11,v22);
+  mesa(1,1,bot1[i].val1,bot2[i].val2,bot1[i].pec);
+
       el[i].remove();
       bot1.splice(i,1);
       setTimeout(()=>{botjog1()},1000);
@@ -204,6 +207,8 @@ if(bot1.length!=0){
       v22=bot1[i].val1;
     console.log(bot1[i]);
     console.log(v11,v22);
+  mesa(2,1,bot1[i].val1,bot1[i].val2,bot1[i].pec);
+
       el[i].remove();
       bot1.splice(i,1);
       setTimeout(()=>{botjog1()},1000);
@@ -213,6 +218,7 @@ if(bot1.length!=0){
       v22=bot1[i].val2;
     console.log(bot1[i]);
     console.log(v11,v22);
+  mesa(2,0,bot1[i].val1,bot1[i].val2,bot1[i].pec);
       el[i].remove();
       bot1.splice(i,1);
       setTimeout(()=>{botjog1()},1000);
@@ -237,7 +243,9 @@ if(bot2.length!=0){
     if(v11==bot2[i].val1){
       v11=bot2[i].val2;
     console.log(bot2[i]);
-  console.log(v11,v22); 
+  console.log(v11,v22);
+  mesa(1,0,bot2[i].val1,bot2[i].val2,bot2[i].pec);
+
       el[i].remove();
       bot2.splice(i,1);
       setTimeout(()=>{botjog2()},1000);
@@ -246,7 +254,9 @@ if(bot2.length!=0){
     if(v11==bot2[i].val2){
       v11=bot2[i].val1;
     console.log(bot2[i]);
-  console.log(v11,v22); 
+  console.log(v11,v22);
+  mesa(1,1,bot2[i].val1,bot2[i].val2,bot2[i].pec);
+
       el[i].remove();
       bot2.splice(i,1);
       setTimeout(()=>{botjog2()},1000);
@@ -255,7 +265,8 @@ if(bot2.length!=0){
      if(v22==bot2[i].val2){
       v22=bot2[i].val1;
     console.log(bot2[i]);
-  console.log(v11,v22); 
+  console.log(v11,v22);
+  mesa(2,1,bot2[i].val1,bot2[i].val2,bot2[i].pec);
       el[i].remove();
       bot2.splice(i,1);
       setTimeout(()=>{botjog2()},1000);
@@ -264,7 +275,8 @@ if(bot2.length!=0){
     if(v22==bot2[i].val1){
       v22=bot2[i].val2;
     console.log(bot2[i]);
-  console.log(v11,v22); 
+  console.log(v11,v22);
+  mesa(2,0,bot2[i].val1,bot2[i].val2,bot2[i].pec);
       el[i].remove();
       bot2.splice(i,1);
       setTimeout(()=>{botjog2()},1000);
@@ -289,7 +301,8 @@ if(bot3.length!=0){
     if(v11==bot3[i].val1){
       v11=bot3[i].val2;
       console.log(bot3[i]);    
-  console.log(v11,v22); 
+  console.log(v11,v22);
+  mesa(1,0,bot3[i].val1,bot3[i].val2,bot3[i].pec);
       el[i].remove();
       bot3.splice(i,1);
       setTimeout(()=>{botjog3()},1000);
@@ -298,7 +311,8 @@ if(bot3.length!=0){
     if(v11==bot3[i].val2){
       v11=bot3[i].val1;
     console.log(bot3[i]);
-  console.log(v11,v22); 
+  console.log(v11,v22);
+  mesa(1,1,bot3[i].val1,bot3[i].val2,bot3[i].pec);
       el[i].remove();
       bot3.splice(i,1);
       setTimeout(()=>{botjog3()},1000);
@@ -308,6 +322,7 @@ if(bot3.length!=0){
       v22=bot3[i].val1;
       console.log(bot3[i]);    
   console.log(v11,v22); 
+  mesa(2,1,bot3[i].val1,bot3[i].val2,bot3[i].pec);
       el[i].remove();
       bot3.splice(i,1);
       setTimeout(()=>{botjog3()},1000);
@@ -317,6 +332,8 @@ if(bot3.length!=0){
       v22=bot3[i].val2;
     console.log(bot3[i]);
   console.log(v11,v22); 
+  mesa(2,0,bot3[i].val1,bot3[i].val2,bot3[i].pec);
+
       el[i].remove();
       bot3.splice(i,1);
       setTimeout(()=>{botjog3()},1000);
@@ -369,6 +386,7 @@ for(var i=0; i<el.length; i++){
       v11=jogador1[i].val2;
     console.log(1);
     console.log(jogador1[i]);
+    mesa(1,0,jogador1[i].val1,jogador1[i].val2,jogador1[i].pec);
     remo(i);
     break;
       
@@ -376,12 +394,14 @@ for(var i=0; i<el.length; i++){
       v11=jogador1[i].val1;
     console.log(2);
     console.log(jogador1[i]);
+    mesa(1,1,jogador1[i].val1,jogador1[i].val2,jogador1[i].pec);
     remo(i);
       break;
     }if(v22==jogador1[i].val1){
       v22=jogador1[i].val2;
     console.log(3);
     console.log(jogador1[i]);
+    mesa(2,0,jogador1[i].val1,jogador1[i].val2,jogador1[i].pec);
     remo(i);
       break;
 
@@ -389,6 +409,7 @@ for(var i=0; i<el.length; i++){
       v22=jogador1[i].val1;
     console.log(4);
     console.log(jogador1[i]);
+    mesa(2,1,jogador1[i].val1,jogador1[i].val2,jogador1[i].pec);
     remo(i);
       break;
 
@@ -424,17 +445,68 @@ function ganho(){
 
   return 0;
 }
+function mesa(l,lv,vl1,vl2,styl){
+  le=document.querySelectorAll(".eme");
+  ld=document.querySelectorAll(".emd");
+  console.log(le[qle].style.left,styl);
+  if(vl1==6 && vl2==6){
+    document.querySelector(".emc").style.backgroundImage="url('"+styl+"')";
+  }else{
+      if(vl1==vl2){
+        lv=2;
+      }
+      if(l==1){
+        le[qle].style.backgroundImage="url('"+styl+"')";
+        if(lv==0){
+        le[qle].style.transform="rotate(90deg)";
+        le[qle].style.left=String(led)+"%";
+        led-=3;
+        }if(lv==1){
+          le[qle].style.transform="rotate(270deg)";
+          le[qle].style.left=String(led)+"%";
+          led-=3;
+        }if(lv==2){
+          le[qle].style.transform="rotate(0deg)";
+          le[qle].style.left=String(led)+"%";
+          led-=2;         
+        }
+        qle+=1;
+        cle();          
+      }else{
+        ld[qld].style.backgroundImage="url('"+styl+"')";
+        if(lv==0){
+        ld[qld].style.transform="rotate(270deg)";
+        ld[qld].style.left=String(ldd)+"%";
+        ldd+=3;
+        }if(lv==1){
+          ld[qld].style.transform="rotate(90deg)";
+          ld[qld].style.left=String(ldd)+"%";
+          ldd+=3;
+        }if(lv==2){
+          ld[qld].style.transform="rotate(0deg)";
+          ld[qld].style.left=String(ldd)+"%"; 
+          ldd+=2;
+        }
+        qld+=1;          
+        cld();
+      }
+    }
+}
+function cld(){
+  locopy=document.querySelector(".mesa");
+  ori=document.querySelector(".emd");
+  var copy=ori.cloneNode(true);    
+  locopy.appendChild(copy);
+}
+function cle(){
+  locopy=document.querySelector(".mesa");
+  ori=document.querySelector(".eme");
+  var copy=ori.cloneNode(true);    
+  locopy.appendChild(copy);
+}
 function load() {
     obj();
-    /*var el = document.querySelectorAll(".pec");
-    for(var i=0; i<=6; i++){
-    el[i].addEventListener("click",function (){
-      this.style.display="none";
-    });
-
-  }*/
-
-  }
+}
   
   
   document.addEventListener("DOMContentLoaded", load)

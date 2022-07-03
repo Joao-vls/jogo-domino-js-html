@@ -28,11 +28,33 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
 }
 .emc{
     position: absolute;
-    border:1px solid beige;
     width: 2%;
     height: 6%;
     top: 50%;
     left: 46%;
+    background-image:url('pec/01.png');
+    background-size: 100% 100%;
+}
+.eme{
+    position: absolute;
+    width: 2%;
+    height: 6%;
+    top: 50%;
+    left: 43%;
+    background-image:url('pec/01.png');
+    background-size: 100% 100%;
+    transform: rotate(270deg); 
+}
+.emd{
+    position: absolute;
+    width: 2%;
+    height: 6%;
+    top: 50%;
+    left: 49%;
+    background-image:url('pec/01.png');
+    background-size: 100% 100%;
+    transform: rotate(90deg);
+
 }
 .pec{
     display:inline-block;
@@ -83,7 +105,7 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
 .bot2 .pec{
     width:9% ;
     height: 65px;
-    transform: rotate(180deg);   
+    transform: rotate(180deg); 
 
 }
 
