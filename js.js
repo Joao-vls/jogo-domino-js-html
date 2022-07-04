@@ -5,7 +5,7 @@ bot1=[];
 bot2=[];
 bot3=[];
 let pobj=[];
-var v11=6,v22=6,s=0,qle=0,qld=0,led=43,ldd=49;
+var v11=6,v22=6,s=0,qle=0,qld=0,led=43,ldd=49,sese=0;
 
 function obj(){
 var r1=0 ,r2=0,pr=0;
@@ -98,24 +98,28 @@ function jog12(){
      al.innerHTML="Voce Começa";
      al.style.display="block";
      s=1;
+     sese=i;
      break;
    }
    if(bot1[i].soma==12){
     al.innerHTML="jogador dois Começa";
     al.style.display="block";
     s=2;
+    sese=i;
     break;
   }
   if(bot2[i].soma==12){
     al.innerHTML="jogador tres Começa";
     al.style.display="block";
     s=3;
+    sese=i;
     break;
   }
   if(bot3[i].soma==12){
     al.innerHTML="jogador quatro Começa";
     al.style.display="block";
     s=4;
+    sese=i;
     break;
   }
 
@@ -128,10 +132,57 @@ function jog12(){
   },3500);
   
 }
+function jogblock(){
+var n=0,co=0;
+for(var i=0; i<jogador1.length; i++){
+  if(v11==jogador1[i].val1 || v22==jogador1[i].val2 ||v11==jogador1[i].val2 || v22==jogador1[i].val1 ){
+    co=1;
+    break;
+  }
+}if(co!=1){
+  n+=1;
+}
+co=0;
+for(var i=0; i<bot1.length; i++){
+  if(v11==bot1[i].val1 || v22==bot1[i].val2 ||v11==bot1[i].val2 || v22==bot1[i].val1 ){
+    co=1;
+    break;
+  }
+}if(co!=1){
+  n+=1;
+}
+co=0;
+for(var i=0; i<bot2.length; i++){
+  if(v11==bot2[i].val1 || v22==bot2[i].val2 ||v11==bot2[i].val2 || v22==bot2[i].val1 ){
+    co=1;
+    break;
+  }
+}if(co!=1){
+  n+=1;
+}
+co=0;
+for(var i=0; i<bot3.length; i++){
+  if(v11==bot3[i].val1 || v22==bot3[i].val2 ||v11==bot3[i].val2 || v22==bot3[i].val1 ){
+    co=1;
+    break;
+  }
+}if(co!=1){
+  n+=1;
+}
+return n; 
+}
 function jog(){
   console.log(s);
   var al=document.querySelector(".cademe");
+  if(jogblock()==4){
+    al.innerHTML="jogo bloqueado";
+    al.style.display="block";
+  document.querySelector(".cobrejo1").style.display="block";
+  s=0;
+    return 0;
+  }
   if(ganho()!=0){
+  document.querySelector(".cobrejo1").style.display="block";
     switch(ganho()){
       case 1:
           al.innerHTML="Voce ganhou";
@@ -148,8 +199,11 @@ function jog(){
       case 4:
           al.innerHTML="Jogador 4 ganhou";
           al.style.display="block";
+          
       break;
     }
+    s=0;
+    return 0;
   }
   switch(s){
     case 1:
@@ -164,13 +218,23 @@ function jog(){
     case 4:
       botjog3();
     break;
-
+    default:
+      return 0;
     }
   
 }
 function botjog1(){ 
+  document.querySelector(".cobrejo1").style.display="block";
 var el = document.querySelectorAll(".bot1 .pec");
 var al=document.querySelector(".cademe");
+if(sese!=-1){
+  mesa(1,0,bot1[sese].val1,bot1[sese].val2,bot1[sese].pec);
+
+  el[sese].remove();
+  bot1.splice(sese,1);
+  sese=-1;
+  setTimeout(()=>{botjog1()},1000)
+}
 if(bot1.length!=0){
   for(var i=0; i<=bot1.length; i++){
     if(i==bot1.length){
@@ -189,18 +253,18 @@ if(bot1.length!=0){
 
       el[i].remove();
       bot1.splice(i,1);
-      setTimeout(()=>{botjog1()},1000);
+      setTimeout(()=>{botjog1()},2500);
       break;
     }
     if(v11==bot1[i].val2){
       v11=bot1[i].val1;
     console.log(bot1[i]);
     console.log(v11,v22);
-  mesa(1,1,bot1[i].val1,bot2[i].val2,bot1[i].pec);
+  mesa(1,1,bot1[i].val1,bot1[i].val2,bot1[i].pec);
 
       el[i].remove();
       bot1.splice(i,1);
-      setTimeout(()=>{botjog1()},1000);
+      setTimeout(()=>{botjog1()},2500);
       break;
     }   
      if(v22==bot1[i].val2){
@@ -211,7 +275,7 @@ if(bot1.length!=0){
 
       el[i].remove();
       bot1.splice(i,1);
-      setTimeout(()=>{botjog1()},1000);
+      setTimeout(()=>{botjog1()},2500);
       break;
     }
     if(v22==bot1[i].val1){
@@ -221,15 +285,24 @@ if(bot1.length!=0){
   mesa(2,0,bot1[i].val1,bot1[i].val2,bot1[i].pec);
       el[i].remove();
       bot1.splice(i,1);
-      setTimeout(()=>{botjog1()},1000);
+      setTimeout(()=>{botjog1()},2500);
       break;
     }
   }
 }else{jog();}
 }
 function botjog2(){
+  document.querySelector(".cobrejo1").style.display="block";
 var el = document.querySelectorAll(".bot2 .pec");
 var al=document.querySelector(".cademe");
+if(sese!=-1){
+  mesa(1,0,bot2[sese].val1,bot2[sese].val2,bot2[sese].pec);
+
+  el[sese].remove();
+  bot2.splice(sese,1);
+  sese=-1;
+  setTimeout(()=>{botjog2()},1000)
+}
 if(bot2.length!=0){
   for(var i=0; i<=bot2.length; i++){
     if(i==bot2.length){
@@ -248,7 +321,7 @@ if(bot2.length!=0){
 
       el[i].remove();
       bot2.splice(i,1);
-      setTimeout(()=>{botjog2()},1000);
+      setTimeout(()=>{botjog2()},2500);
       break;
     }
     if(v11==bot2[i].val2){
@@ -259,7 +332,7 @@ if(bot2.length!=0){
 
       el[i].remove();
       bot2.splice(i,1);
-      setTimeout(()=>{botjog2()},1000);
+      setTimeout(()=>{botjog2()},2500);
       break;
     }   
      if(v22==bot2[i].val2){
@@ -269,7 +342,7 @@ if(bot2.length!=0){
   mesa(2,1,bot2[i].val1,bot2[i].val2,bot2[i].pec);
       el[i].remove();
       bot2.splice(i,1);
-      setTimeout(()=>{botjog2()},1000);
+      setTimeout(()=>{botjog2()},2500);
       break;
     }
     if(v22==bot2[i].val1){
@@ -279,15 +352,24 @@ if(bot2.length!=0){
   mesa(2,0,bot2[i].val1,bot2[i].val2,bot2[i].pec);
       el[i].remove();
       bot2.splice(i,1);
-      setTimeout(()=>{botjog2()},1000);
+      setTimeout(()=>{botjog2()},2500);
       break;
     }
   }
 }else{jog();} 
 }
 function botjog3(){
+  document.querySelector(".cobrejo1").style.display="block";
 var el = document.querySelectorAll(".bot3 .pec");
 var al=document.querySelector(".cademe");
+if(sese!=-1){
+  mesa(1,0,bot3[sese].val1,bot3[sese].val2,bot3[sese].pec);
+
+  el[sese].remove();
+  bot3.splice(sese,1);
+  sese=-1;
+  setTimeout(()=>{botjog3()},2500)
+}
 if(bot3.length!=0){
   for(var i=0; i<=bot3.length; i++){
     if(i==bot3.length){
@@ -305,7 +387,7 @@ if(bot3.length!=0){
   mesa(1,0,bot3[i].val1,bot3[i].val2,bot3[i].pec);
       el[i].remove();
       bot3.splice(i,1);
-      setTimeout(()=>{botjog3()},1000);
+      setTimeout(()=>{botjog3()},2500);
       break;
     }
     if(v11==bot3[i].val2){
@@ -315,7 +397,7 @@ if(bot3.length!=0){
   mesa(1,1,bot3[i].val1,bot3[i].val2,bot3[i].pec);
       el[i].remove();
       bot3.splice(i,1);
-      setTimeout(()=>{botjog3()},1000);
+      setTimeout(()=>{botjog3()},2500);
       break;
     }   
      if(v22==bot3[i].val2){
@@ -325,7 +407,7 @@ if(bot3.length!=0){
   mesa(2,1,bot3[i].val1,bot3[i].val2,bot3[i].pec);
       el[i].remove();
       bot3.splice(i,1);
-      setTimeout(()=>{botjog3()},1000);
+      setTimeout(()=>{botjog3()},2500);
       break;
     }
     if(v22==bot3[i].val1){
@@ -336,19 +418,16 @@ if(bot3.length!=0){
 
       el[i].remove();
       bot3.splice(i,1);
-      setTimeout(()=>{botjog3()},1000);
+      setTimeout(()=>{botjog3()},2500);
       break;
     }
   }
 }else{jog();}
 }
 function joga1(){
-
+  document.querySelector(".cobrejo1").style.display="none";
 var el = document.querySelectorAll(".jogador1 .pec");
 var al=document.querySelector(".cademe");
-document.querySelector("button").style.display="block";
-
-
 document.querySelector("button").addEventListener("click",()=>{
  
   al.innerHTML="voce passou a jogada";
@@ -376,7 +455,24 @@ var el = document.querySelectorAll(".jogador1 .pec");
 function joga11(){
 var el = document.querySelectorAll(".jogador1 .pec");
 var al=document.querySelector(".cademe");
-
+if(sese!=-1){
+if(el[sese].style.border=="0.5px solid black"){
+    mesa(1,0,jogador1[sese].val1,jogador1[sese].val2,jogador1[sese].pec);
+    remo(sese);
+    sese=-1;
+}else{
+  al.innerHTML="peça invalida";
+  al.style.display="block";
+  for(var i=0; i<el.length; i++){
+    if(el[i].style.border=="0.5px solid black"){
+      el[i].style.border="0px"
+    }
+  }
+  setTimeout(()=>{al.style.display="none"},3000);
+  
+}
+}else{
+document.querySelector("button").style.display="block";
 for(var i=0; i<el.length; i++){
     if(el[i].style.border=="0.5px solid black"){
        
@@ -422,24 +518,20 @@ for(var i=0; i<el.length; i++){
       break;
     }
   }
-
+}
 }
 }
 function ganho(){
   if(jogador1.length==0){
-  s=0;
   return 1;
   }
   if(bot1.length==0){
-  s=0;
   return 2;
 }
   if(bot2.length==0){
-  s=0;
   return 3;
   }
   if(bot3.length==0){
-  s=0;
   return 4;
   }
 
@@ -460,15 +552,16 @@ function mesa(l,lv,vl1,vl2,styl){
         if(lv==0){
         le[qle].style.transform="rotate(90deg)";
         le[qle].style.left=String(led)+"%";
-        led-=3;
+        led-=4;
         }if(lv==1){
           le[qle].style.transform="rotate(270deg)";
           le[qle].style.left=String(led)+"%";
-          led-=3;
+          led-=4;
         }if(lv==2){
+          led+=1;
           le[qle].style.transform="rotate(0deg)";
           le[qle].style.left=String(led)+"%";
-          led-=2;         
+          led-=3;         
         }
         qle+=1;
         cle();          
@@ -477,15 +570,16 @@ function mesa(l,lv,vl1,vl2,styl){
         if(lv==0){
         ld[qld].style.transform="rotate(270deg)";
         ld[qld].style.left=String(ldd)+"%";
-        ldd+=3;
+        ldd+=4;
         }if(lv==1){
           ld[qld].style.transform="rotate(90deg)";
           ld[qld].style.left=String(ldd)+"%";
-          ldd+=3;
+          ldd+=4;
         }if(lv==2){
+          ldd-=1;
           ld[qld].style.transform="rotate(0deg)";
           ld[qld].style.left=String(ldd)+"%"; 
-          ldd+=2;
+          ldd+=3;
         }
         qld+=1;          
         cld();
@@ -504,8 +598,14 @@ function cle(){
   var copy=ori.cloneNode(true);    
   locopy.appendChild(copy);
 }
-function load() {
-    obj();
+function load() { 
+var al=document.querySelector(".cademe");
+document.querySelector(".cobrejo1").addEventListener("click",()=>{
+  al.innerHTML="não e sua vez";
+  al.style.display="block";
+setTimeout(al.style.display="none",1500);
+})
+obj();
 }
   
   
