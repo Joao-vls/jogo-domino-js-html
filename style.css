@@ -97,6 +97,7 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
     left: 33%;
     background-color: transparent;
 }.jogador .pec{
+    cursor: pointer;
     width:9% ;
     height: 65px;
 }
@@ -105,7 +106,33 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
     height:100%;
     z-index:1;
 }
+.mostrar{
+    position: absolute;
+    right:0% ;
+    width:5%;
+    height:45px;
+    background-image: url('img/olhofech.png');
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    background-size: 100% 100%; 
+}
+.cobrir{
+    position: absolute;
+    right:0% ;
+    width:5%;
+    height:45px;
+    background-image: url('img/olhoabe.png');
+    background-color: transparent;
+    border: none;
+    display:none;
+    cursor: pointer;
+    z-index: 2;
+    background-size: 100% 100%; 
+}
 .cobrejo1 button{
+    cursor: pointer;
     position: absolute;
     left: 44%;
     top: 55%;
@@ -154,6 +181,7 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
     transform: rotate(90deg);
 }
 .passar{
+    cursor: pointer;
     width:15%;
     height: 30px;
     position: absolute;

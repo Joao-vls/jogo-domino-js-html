@@ -3,10 +3,20 @@ jogador = [];
 bot = new Array(4);
 
 let quem = 0, v11 = 6, v22 = 6, qle = 0, qld = 0, led = 43, ldd = 49, tole = 45, told = 55, localdrop = 0, sese = 0;
-function load() {
+function load(){
     bot[0] = [];
     bot[1] = [];
     bot[2] = [];
+    document.querySelector(".passar").addEventListener("click", () => {
+        document.querySelector(".cademe").innerHTML = "voce passou a jogada";
+        document.querySelector(".cademe").style.display = "block";
+        quem = 0;
+        document.querySelector(".passar").style.display="none";
+        setTimeout(jogar, 2500);
+        return;
+    });
+    document.querySelector(".mostrar").addEventListener("click", mostrapecasbot);
+    document.querySelector(".cobrir").addEventListener("click", cobrepecasbot);
     //document.querySelector(".dropdireito").addEventListener("drop",()=>{});
     Definepecas();
 }
@@ -35,6 +45,26 @@ function Definepecas() {
         }
 
     }
+}
+function cobrepecasbot() {
+    for (var q = 0; q < 3; q++) {
+        var pecm = document.querySelectorAll(".bot" + String(q) + " .pec");
+        for (var i = 0; i < bot[q].length; i++) {
+            pecm[i].style.backgroundImage = "url('pec/padr.png')";
+        }
+    }
+    document.querySelector(".cobrir").style.display = "none";
+    document.querySelector(".mostrar").style.display = "block"
+}
+function mostrapecasbot() {
+    for (var q = 0; q < 3; q++) {
+        var pecm = document.querySelectorAll(".bot" + String(q) + " .pec");
+        for (var i = 0; i < pecm.length; i++) {
+            pecm[i].style.backgroundImage = "url('" + bot[q][i].pec + "')";
+        }
+    }
+    document.querySelector(".cobrir").style.display = "block";
+    document.querySelector(".mostrar").style.display = "none"
 }
 function Distribuipeca() {
     var pobj = [];
@@ -77,7 +107,11 @@ function Distribuipeca() {
         }
         var copy = ori.cloneNode(true);
         locopy.appendChild(copy);
-        document.querySelectorAll(".pec")[numdecopy].style.backgroundImage = "url('" + pecas[pobj[numdecopy]].pec + "')";
+        if (numdecopy < 7) {
+            document.querySelectorAll(".pec")[numdecopy].style.backgroundImage = "url('" + pecas[pobj[numdecopy]].pec + "')";
+        } else {
+            document.querySelectorAll(".pec")[numdecopy].style.backgroundImage = "url('pec/padr.png')";
+        }
         numdecopy++;
     }
     return QuemComes();
@@ -137,8 +171,8 @@ function Jogoblock() {
 }
 function Fimdojogo() {
     document.querySelector("footer").style.display = "block";
-    document.querySelectorAll("button")[0].style.display = "block";
-    document.querySelectorAll("button")[0].addEventListener("click", () => {
+    document.querySelectorAll("button")[2].style.display = "block";
+    document.querySelectorAll("button")[2].addEventListener("click", () => {
         setTimeout(() => {
             return document.location.reload(true);;
         }, 500);
@@ -188,17 +222,15 @@ function jogar() {
             AddeventJogador();
             break;
         default:
-            botjog();
+            setTimeout(botjog, 1000);
             break;
     }
-}
-function sleep(tm) {
-    return new Promise(resolve => setTimeout(resolve, tm));
 }
 function botjog() {
     document.querySelector(".cobrejo1").style.display = "block";
     var el = document.querySelectorAll(".bot" + String(quem) + " .pec");
     var al = document.querySelector(".cademe");
+    al.style.display = "none";
     if (sese >= 0) {
         mesa(1, 0, bot[quem][sese].val1, bot[quem][sese].val2, bot[quem][sese].pec);
         el[sese].remove();
@@ -268,13 +300,15 @@ function chamarjogo(el) {
     });
 }
 function AddeventJogador() {
+    if (sese < 0) {
+        document.querySelector(".passar").style.display = "block";
+    }
     document.querySelector(".cobrejo1").style.display = "none";
     var el = document.querySelectorAll(".jogador .pec");
     document.addEventListener("dragstart", (e) => {
         e.target.classList.add("dragging");
     });
     document.addEventListener("dragend", (e) => {
-        console.log(localdrop);
         e.target.classList.remove("dragging");
         if (localdrop) {
             e.target.removeEventListener("dblclick", chamarjogo);
@@ -310,17 +344,6 @@ function AddeventJogador() {
 function jogadorjoga() {
     var el = document.querySelectorAll(".jogador .pec");
     var al = document.querySelector(".cademe");
-    document.querySelector(".passar").addEventListener("click", () => {
-        al.innerHTML = "voce passou a jogada";
-        al.style.display = "block";
-        setTimeout(() => {
-            al.style.display = "none";
-            quem = 0;
-            jogar();
-        }, 2500);
-        document.querySelector(".passar").style.display = "none";
-        return;
-    });
     if (sese >= 0) {
         if (el[sese].style.border == "0.5px solid black") {
             mesa(1, 0, jogador[sese].val1, jogador[sese].val2, jogador[sese].pec);
@@ -337,10 +360,8 @@ function jogadorjoga() {
             setTimeout(() => { al.style.display = "none" }, 2500);
         }
     } else {
-        document.querySelector(".passar").style.display = "block";
         for (var i = 0; i < el.length; i++) {
-            if (el[i].style.border == "0.5px solid black") {
-                //jogador1[(i+1)>jogador1.length-1 ? i :i+1].psi=jogador1[i].psi;
+            if (el[i].style.border == "0.5px solid black"){
                 if (v11 == jogador[i].val1 || v22 == jogador[i].val2 || v11 == jogador[i].val2 || v22 == jogador[i].val1) {
                     if (v11 == jogador[i].val1) {
                         v11 = jogador[i].val2;
@@ -401,7 +422,7 @@ function mesa(l, lv, vl1, vl2, styl) {
                     le[qle].style.transform = "rotate(90deg)";
                     le[qle].style.top = String(tole) + "%";
                     le[qle].style.left = "3.5%";
-                    tole -= 5;
+                    tole -= 4.5;
                 } else {
                     if (lv == 2) {
                         lv = 0;
@@ -411,19 +432,19 @@ function mesa(l, lv, vl1, vl2, styl) {
                     le[qle].style.transform = "rotate(180deg)";
                     le[qle].style.top = String(tole) + "%"
                     le[qle].style.left = "3.5%";
-                    tole -= 6;
+                    tole -= 5.5;
                 } if (lv == 1) {
                     le[qle].style.transform = "rotate(0deg)";
                     le[qle].style.top = String(tole) + "%";
                     le[qle].style.left = "3.5%";
-                    tole -= 6;
+                    tole -= 5.5;
                 }
             }
             qle += 1;
             clonarpecamesa(1);
         } else {
+            ld[qld].style.backgroundImage = "url('" + styl + "')";
             if (ldd <= 93) {
-                ld[qld].style.backgroundImage = "url('" + styl + "')";
                 if (lv == 0) {
                     ld[qld].style.transform = "rotate(270deg)";
                     ld[qld].style.left = String(ldd) + "%";
@@ -450,12 +471,12 @@ function mesa(l, lv, vl1, vl2, styl) {
                     }
                 }
                 if (lv == 0) {
-                    ld[qld].style.transform = "rotate(180deg)";
+                    ld[qld].style.transform = "rotate(-1deg)";
                     ld[qld].style.top = String(told) + "%"
                     ld[qld].style.left = "93%";
                     told += 6;
                 } if (lv == 1) {
-                    ld[qld].style.transform = "rotate(0deg)";
+                    ld[qld].style.transform = "rotate(184deg)";
                     ld[qld].style.top = String(told) + "%";
                     ld[qld].style.left = "93%";
                     told += 6;
