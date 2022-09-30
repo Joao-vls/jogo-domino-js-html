@@ -2,6 +2,7 @@
 body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
 .cademe{
     position: fixed;
+    z-index: 2;
     top:10%;
     left: 30%;
     width:40%;
@@ -16,7 +17,6 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
     display: none;
 }
 .mesa{
-
     position: absolute;
     border: 3px solid rgb(112, 72, 25);
     border-radius: 10px;
@@ -24,28 +24,6 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
     height: 74%;
     top:13%;
     left: 15%;
-}
-.dropesquerdo{
-    position: absolute;
-    border: none;
-    top:13%;
-    z-index: 1;
-    border-radius: 10px;
-    left: 15%;
-    width: 32% ;
-    height:66%;
-    background-color: transparent;
-}
-.dropdireito{
-    position: absolute;
-    border: none;
-    background-color: transparent;
-    border-radius: 10px;
-    z-index: 1;
-    left: 49%;
-    top:13%;
-    width: 36% ;
-    height: 66%;
 }
 .emc{
     position: absolute;
@@ -81,79 +59,69 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
     background: no-repeat;
     background-image: url('pec/padr.png');
     background-size: 100% 100%;
+
+
 }
 .pec:hover{
     background-color: brown;
 }
 
-.jogador,.bot0,.bot1,.bot2,.cobrejo1{
+.jogador1,.bot1,.bot2,.bot3,.cobrejo1{
     white-space:nowrap;
     overflow:hidden; 
     position: absolute;
 }
-.jogador{
+.jogador1{
     top:90%;
     width:50%;
     left: 33%;
-    background-color: transparent;
-}.jogador .pec{
+}.jogador1 .pec{
     width:9% ;
     height: 65px;
+
 }
 .cobrejo1{
     width:100%;
     height:100%;
     z-index:1;
 }
-.cobrejo1 button{
-    position: absolute;
-    left: 44%;
-    top: 55%;
-    width:8%;
-    height:10%;
-    border: none;
-    background-color: transparent;
-    background-image: url('img/recarre.png');
-    border-radius: 100%;
-    background-size: 100% 100%;
-    display: none;
-}
-.bot0{  
+.bot1{  
     top:20%;
     width:6%;
     left: 90%;
 }
-.bot0 .pec{
+.bot1 .pec{
     display: block;
     transform: rotate(270deg); 
     margin-left: 13%;
     width: 70%;
-    height: 75px;
+    height: 75px;  
 }
-.bot1{  
+.bot2{  
     bottom: 88%;
     width:50%;
-    left: 33%;   
+    left: 33%;
 }
-.bot1 .pec{
+.bot2 .pec{
     width:9% ;
     height: 65px;
     transform: rotate(180deg); 
 }
-.bot2{  
+
+.bot3{  
     top:20%;
     width:6%;
     right: 90%;
        
 }
-.bot2 .pec{
+.bot3 .pec{
     display: block;
     margin-left: 13%;
     width: 70%;
     height: 75px;    
     transform: rotate(90deg);
 }
-.passar{
+button{
     width:15%;
     height: 30px;
     position: absolute;
@@ -162,26 +130,7 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
     border: none;
     color:whitesmoke;
     display:none;
+
 }
-footer{
-    position: absolute;
-    left: 33%;
-    z-index: 1;
-    bottom: 0%;
-    display: none;
-    border-top-left-radius: 60%;
-    border-bottom-right-radius: 10%;
-    color: rgb(245, 234, 234);
-    font-size: 20px;
-    text-align: center;
-    background-color: rgb(54, 53, 53);
-    width: 30%;
-    height: 40px;
-}
-footer p{
-    margin-top: 4%;
-}
-footer a{
-    text-decoration: none;
-    color: rgb(189, 189, 189);
-}
+
+
