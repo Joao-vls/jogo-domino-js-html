@@ -68,7 +68,7 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
 .pec{
     display:inline-block;
     border:0px;
-    border-radius: 10px;
+    border-radius: 5%;
     background: no-repeat;
     background-image: url('pec/padr.png');
     background-size: 100% 100%;
@@ -139,7 +139,7 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
     transform: rotate(270deg); 
     margin-left: 13%;
     width: 70%;
-    height: 4.9vmax;
+    height: 5vmax;
 }
 .bot1{  
     bottom: 88%;
@@ -161,7 +161,7 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
     display: block;
     margin-left: 13%;
     width: 70%;
-    height: 4.9vmax;    
+    height: 5vmax;    
     transform: rotate(90deg);
 }
 .passar{
@@ -188,7 +188,7 @@ footer{
     text-align: center;
     background-color: rgb(54, 53, 53);
     width: 35%;
-    height: 4vmax;
+    height: 4.1vmax;
 }
 footer p{
     margin-top: 2.3%;
