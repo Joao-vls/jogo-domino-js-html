@@ -8,7 +8,7 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
     border: 2px solid rgb(63, 62, 61); 
     background-image:linear-gradient(rgb(184, 184, 184),rgb(151, 145, 145));
     height:20%;
-    font-size: 120%;
+    font-size: 2.4vmax;
     text-align: center;
     padding-top: 5%;
     color:black;
@@ -47,32 +47,23 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
     width: 36% ;
     height: 66%;
 }
-.emc{
+.emc, .emd ,.eme{
     position: absolute;
-    width: 2%;
-    height: 6%;
-    top: 50%;
-    left: 46%;
     background-size: 100% 100%;
+    width: 1.5vmax;
+    height: 2.5vmax;
+    top: 50%;
+}
+.emc{
+    left: 46%;
 }
 .eme{
-    position: absolute;
-    width: 2%;
-    height: 6%;
-    top: 50%;
-    left: 43%;
-    background-size: 100% 100%;
+    left: 43%; 
     transform: rotate(270deg); 
 }
 .emd{
-    position: absolute;
-    width: 2%;
-    height: 6%;
-    top: 50%;
     left: 49%;
-    background-size: 100% 100%;
     transform: rotate(90deg);
-
 }
 .pec{
     display:inline-block;
@@ -99,37 +90,30 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
 }.jogador .pec{
     cursor: pointer;
     width:9% ;
-    height: 65px;
+    height: 4.5vmax;
 }
 .cobrejo1{
     width:100%;
     height:100%;
     z-index:1;
 }
-.mostrar{
+.mostrar, .cobrir{
     position: absolute;
+    top: 0%;
     right:0% ;
-    width:5%;
-    height:45px;
-    background-image: url('img/olhofech.png');
+    width:3vmax;
+    height:2vmax;
     background-color: transparent;
     border: none;
     cursor: pointer;
     z-index: 2;
     background-size: 100% 100%; 
 }
+.mostrar{
+    background-image: url('img/olhofech.png');
+}
 .cobrir{
-    position: absolute;
-    right:0% ;
-    width:5%;
-    height:45px;
     background-image: url('img/olhoabe.png');
-    background-color: transparent;
-    border: none;
-    display:none;
-    cursor: pointer;
-    z-index: 2;
-    background-size: 100% 100%; 
 }
 .cobrejo1 button{
     cursor: pointer;
@@ -146,8 +130,8 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
     display: none;
 }
 .bot0{  
-    top:20%;
-    width:6%;
+    top: 19%;
+    width:7.5%;
     left: 90%;
 }
 .bot0 .pec{
@@ -155,7 +139,7 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
     transform: rotate(270deg); 
     margin-left: 13%;
     width: 70%;
-    height: 75px;
+    height: 4.9vmax;
 }
 .bot1{  
     bottom: 88%;
@@ -164,12 +148,12 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
 }
 .bot1 .pec{
     width:9% ;
-    height: 65px;
+    height: 4.9vmax;
     transform: rotate(180deg); 
 }
 .bot2{  
-    top:20%;
-    width:6%;
+    top:19%;
+    width:7.5%;
     right: 90%;
        
 }
@@ -177,19 +161,19 @@ body{margin: 0%;padding: 0%; background-color:rgb(184, 184, 184);}
     display: block;
     margin-left: 13%;
     width: 70%;
-    height: 75px;    
+    height: 4.9vmax;    
     transform: rotate(90deg);
 }
 .passar{
     cursor: pointer;
     width:15%;
-    height: 30px;
     position: absolute;
     bottom: 1%;
     background-color: rgb(24, 23, 23);
     border: none;
     color:whitesmoke;
     display:none;
+    font-size: 2vmax;
 }
 footer{
     position: absolute;
@@ -200,14 +184,14 @@ footer{
     border-top-left-radius: 60%;
     border-bottom-right-radius: 10%;
     color: rgb(245, 234, 234);
-    font-size: 20px;
+    font-size: 2.8vmax;
     text-align: center;
     background-color: rgb(54, 53, 53);
-    width: 30%;
-    height: 40px;
+    width: 35%;
+    height: 4vmax;
 }
 footer p{
-    margin-top: 4%;
+    margin-top: 2.3%;
 }
 footer a{
     text-decoration: none;
