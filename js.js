@@ -300,7 +300,7 @@ function chamarjogo(el) {
         el.style.border = "0.5px solid black";
         jogadorjoga();
     });
-}
+}//
 function AddeventJogador() {
     var al = document.querySelector(".cademe");
     setTimeout(()=>{al.style.display = "none"},1000);
