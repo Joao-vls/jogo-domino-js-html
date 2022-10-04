@@ -3,7 +3,7 @@ jogador = [];
 bot = new Array(4);
 
 let quem = 0, v11 = 6, v22 = 6, qle = 0, qld = 0, led = 43, ldd = 49, tole = 45, told = 55, localdrop = 0, sese = 0;
-function load(){
+function load() {
     bot[0] = [];
     bot[1] = [];
     bot[2] = [];
@@ -11,7 +11,7 @@ function load(){
         document.querySelector(".cademe").innerHTML = "voce passou a jogada";
         document.querySelector(".cademe").style.display = "block";
         quem = 0;
-        document.querySelector(".passar").style.display="none";
+        document.querySelector(".passar").style.display = "none";
         setTimeout(jogar, 2500);
         return;
     });
@@ -126,7 +126,7 @@ function QuemComes() {
             sese = i;
             setTimeout(() => {
                 al.style.display = "none";
-                quem = 4;
+                quem = 3;
                 return jogar();
             }, 2500);
             return;
@@ -174,7 +174,7 @@ function Fimdojogo() {
     document.querySelectorAll("button")[2].style.display = "block";
     document.querySelectorAll("button")[2].addEventListener("click", () => {
         setTimeout(() => {
-            return document.location.reload(true);;
+            return document.location.reload(true);
         }, 500);
     });
 }
@@ -195,10 +195,11 @@ function ganho() {
 
 }
 function jogar() {
+    document.querySelector(".cobrejo1").style.display = "block";
+    document.querySelector(".passar").style.display = "none";
     var al = document.querySelector(".cademe");
     var gan = ganho();
     if (gan >= 0) {
-        document.querySelector(".cobrejo1").style.display = "block";
         switch (gan) {
             case 3:
                 al.innerHTML = "Voce ganhou";
@@ -217,49 +218,47 @@ function jogar() {
         document.querySelector(".cobrejo1").style.display = "block";
         return Fimdojogo();
     }
+    if(sese<0){
+    var nus = (quem == 3) ? "Q?" : (quem == 0) ? "Dois" : (quem == 1) ? "Tres" : "Quatro";
+    if (nus === "Q?") {
+        al.innerHTML = "Sua vez";
+    } else {
+        al.innerHTML = "Vez do Jogador " + nus;
+    }
+    al.style.display = "block";
+}
     switch (quem) {
-        case 4:
+        case 3:
             AddeventJogador();
             break;
         default:
-            setTimeout(botjog, 1000);
+            setTimeout(()=>{al.style.display = "none"},1000);
+            setTimeout(botjog, 3000);
             break;
     }
 }
 function botjog() {
     document.querySelector(".cobrejo1").style.display = "block";
     var el = document.querySelectorAll(".bot" + String(quem) + " .pec");
-    var al = document.querySelector(".cademe");
-    al.style.display = "none";
     if (sese >= 0) {
         mesa(1, 0, bot[quem][sese].val1, bot[quem][sese].val2, bot[quem][sese].pec);
         el[sese].remove();
         bot[quem].splice(sese, 1);
         sese = -3;
-        setTimeout(() => { return botjog(); }, 2500);
-        return;
+        quem +=1;
+        return jogar();
     }
     for (var i = 0; i <= bot[quem].length; i++) {
         if (i == bot[quem].length) {
-            quem = (quem + 1 >= 3) ? 4 : quem + 1;
-            var nus = (quem == 4) ? "Q?" : (quem == 0) ? "Dois" : (quem == 1) ? "Tres" : "Quatro";
-            if (nus === "Q?") {
-                al.innerHTML = "Sua vez";
-            } else {
-                al.innerHTML = "Vez do Jogador " + nus;
-            }
-            al.style.display = "block";
-            setTimeout(() => {
-                al.style.display = "none"
-                return jogar();
-            }, 2000);
-            return;
+            quem+=1;
+            return jogar();
         }
         if (v11 == bot[quem][i].val1) {
             v11 = bot[quem][i].val2;
             mesa(1, 0, bot[quem][i].val1, bot[quem][i].val2, bot[quem][i].pec);
             el[i].remove();
             bot[quem].splice(i, 1);
+            quem +=1;
             return jogar();
         }
         if (v11 == bot[quem][i].val2) {
@@ -267,6 +266,7 @@ function botjog() {
             mesa(1, 1, bot[quem][i].val1, bot[quem][i].val2, bot[quem][i].pec);
             el[i].remove();
             bot[quem].splice(i, 1);
+            quem +=1;
             return jogar();
         }
         if (v22 == bot[quem][i].val2) {
@@ -274,6 +274,7 @@ function botjog() {
             mesa(2, 1, bot[quem][i].val1, bot[quem][i].val2, bot[quem][i].pec);
             el[i].remove();
             bot[quem].splice(i, 1);
+            quem +=1;
             return jogar();
         }
         if (v22 == bot[quem][i].val1) {
@@ -281,6 +282,7 @@ function botjog() {
             mesa(2, 0, bot[quem][i].val1, bot[quem][i].val2, bot[quem][i].pec);
             el[i].remove();
             bot[quem].splice(i, 1);
+            quem +=1;
             return jogar();
         }
     }
@@ -289,7 +291,7 @@ function remo(posi) {
     var el = document.querySelectorAll(".jogador .pec");
     jogador.splice(posi, 1);
     el[posi].remove();
-    sese = -3;
+    quem = 0;
     return jogar();
 }
 function chamarjogo(el) {
@@ -300,6 +302,8 @@ function chamarjogo(el) {
     });
 }
 function AddeventJogador() {
+    var al = document.querySelector(".cademe");
+    setTimeout(()=>{al.style.display = "none"},1000);
     if (sese < 0) {
         document.querySelector(".passar").style.display = "block";
     }
@@ -347,8 +351,10 @@ function jogadorjoga() {
     if (sese >= 0) {
         if (el[sese].style.border == "0.5px solid black") {
             mesa(1, 0, jogador[sese].val1, jogador[sese].val2, jogador[sese].pec);
-            remo(sese);
-            return;
+            quem=0;
+            var aux=sese;
+            sese=-3;
+            return remo(aux);
         } else {
             al.innerHTML = "peça invalida";
             al.style.display = "block";
@@ -361,7 +367,7 @@ function jogadorjoga() {
         }
     } else {
         for (var i = 0; i < el.length; i++) {
-            if (el[i].style.border == "0.5px solid black"){
+            if (el[i].style.border == "0.5px solid black") {
                 if (v11 == jogador[i].val1 || v22 == jogador[i].val2 || v11 == jogador[i].val2 || v22 == jogador[i].val1) {
                     if (v11 == jogador[i].val1) {
                         v11 = jogador[i].val2;
