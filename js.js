@@ -121,7 +121,7 @@ function QuemComes() {
     for (var i = 0; i < 7; i++) {
         if ((jogador[i].val1 + jogador[i].val2) == 12) {
             document.querySelector(".cobrejo1").style.display = "block";
-            al.innerHTML = "Voce Começa";
+            al.innerHTML = "Voce Começa<br>arraste ou de dois click ";
             al.style.display = "block";
             sese = i;
             setTimeout(() => {
@@ -221,7 +221,7 @@ function jogar() {
     if(sese<0){
     var nus = (quem == 3) ? "Q?" : (quem == 0) ? "Dois" : (quem == 1) ? "Tres" : "Quatro";
     if (nus === "Q?") {
-        al.innerHTML = "Sua vez";
+        al.innerHTML = "Sua vez<br>arraste ou de dois click na peça";
     } else {
         al.innerHTML = "Vez do Jogador " + nus;
     }
@@ -229,7 +229,7 @@ function jogar() {
 }
     switch (quem) {
         case 3:
-            AddeventJogador();
+          setTimeout( AddeventJogador,1000);
             break;
         default:
             setTimeout(()=>{al.style.display = "none"},1000);
